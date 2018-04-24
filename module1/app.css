@@ -1,0 +1,95 @@
+html {
+    box-sizing: border-box;
+    font-size: 10px;
+    height: 100%;
+}
+
+*,*::after, *::before {
+    box-sizing: inherit;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: linear-gradient(45deg, rgb(12, 194, 133), rgb(15, 114, 145));
+    width: 100%;
+    height: 100%;
+}
+
+header {
+    background: #fff;
+    padding: 0.5rem 1rem;
+}
+
+.main-heading {
+    color: rgb(0, 0, 0, 0.8);
+    letter-spacing: 1.5px;
+}
+
+.second-heading {
+    color: rgb(0, 0, 0, 0.7);
+    margin-top: 1rem;
+    letter-spacing: 1.25px;
+}
+
+.options {
+    text-align: center;
+    padding: 1rem 0.5rem;
+}
+
+.options h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+.options > div {
+    margin: 1rem 0;
+}
+
+.options > div > label {
+    font-size: 1.4rem;
+    margin-right: 1rem;
+}
+
+.options > div > select {
+    width: 15rem;
+    height: 4rem;
+    border-radius: 1rem;
+    border: none;
+    font-size: 1.6rem;
+    padding: 1rem;
+}
+
+.vehicle h3 {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+table {
+    width: 90%;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+table > thead > tr > td {
+    background: rgb(238, 149, 67);
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+table td {
+    background: #fff;
+    font-size: 1.35rem;
+}
+
+table button {
+    border: none;
+    background: rgb(9, 143, 80);
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+}
