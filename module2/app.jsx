@@ -1,14 +1,14 @@
 class Details extends React.Component {
     render() {
-        return <h1>{this.state.name}</h1>
+        return <h1>{this.props.details}</h1>
     }
 }
 
 class Button extends React.Component {
     render() {
         return(
-            <button>
-                {this.state.name}
+            <button style={{color: this.props.active ? "red" : "blue"}} onClick = {() => {this.props.clickHandler(this.props.id, this.props.name)}}>
+                {this.props.name}
             </button>    
         );
     }
@@ -39,6 +39,7 @@ class App extends React.Component {
                 <Button id={0} active = {this.state.activeArray[0]} clickHandler = {this.clickHandler} name="dragos"/>
                 <Button id={1} active = {this.state.activeArray[1]} clickHandler = {this.clickHandler} name="mihail"/>
                 <Button id={2} active = {this.state.activeArray[2]} clickHandler = {this.clickHandler} name="busuioc"/>
+                <Details details={this.state.details}/>
             </div>    
         );
     }
