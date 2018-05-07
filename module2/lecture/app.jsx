@@ -1,119 +1,51 @@
-const data = [
-    {
-        question: "How is the number 9 represented as a binary number",
-        correct: "1001",
-        incorect: ["1000","1110","1010"]
-    },
-    {
-        question: "In Roman Numerals, what does XL equate to?",
-        correct: "40",
-        incorect: ["60","15","90"]
-    },  
-    {
-        question: "HTML is what type of language?",
-        correct: "Markup Language",
-        incorect: ["Macro Language","Programming Language","Scripting Language"]
-    }, 
-    {
-        question: "This mobile OS held the largest market share in 2012.",
-        correct: "iOS",
-        incorect: ["Android","BlackBerry","Symbian"]
-    }, 
-    {
-        question: "Kuala Lumpur is the capital of which country?",
-        correct: "Malaysia",
-        incorect: ["Indonesia","Singapore","Thailand"]
-    }, 
-    {
-        question: "Which of the following countries banned the use of personal genetic ancestry tests?",
-        correct: "Germany",
-        incorect: ["Austria","Canada","Sweden"]
-    }, 
-    {
-        question: "Who patented a steam engine that produced continuous rotary motion?",
-        correct: "James Watt",
-        incorect: ["Nikola Tesla","Albert Einstein","Alessandro Volta"]
-    },
-    {
-        question: "In what year was the Oculus Rift revealed to the public through a Kickstarter campaign?",
-        correct: "2012",
-        incorect: ["2010","2011","2013"]
-    }, 
-    {
-        question: "In the hexadecimal system, what number comes after 9?",
-        correct: "The Letter A",
-        incorect: ["10","The Number 0","16"]
-    }, 
-    {
-        question: "What is the first Mersenne prime over 1000?",
-        correct: "1279",
-        incorect: ["2203","1009","1069"]
-    },
-    {
-        question: "To the nearest whole number, how many radians are in a whole circle?",
-        correct: "6",
-        incorect: ["3","4","5"]
-    },
-
-];
-
-class App extends React.Component {
+class Details extends React.Component {
     render() {
-        return(
-            <Quiz />    
+        return <h1>{this.props.details}</h1>
+    }
+}
+
+class Button extends React.Component {
+    render() {
+        return (
+            <button style={{ color: this.props.active ? "red" : "blue" }} onClick={() => { this.props.clickHandler(this.props.id, this.props.name) }}>
+                {this.props.name}
+            </button>
         );
     }
 }
 
-class Quiz extends React.Component {
+class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            index: 0,
-            gameOver: false
+            activeArray: [0, 0, 0],
+            details: ""
         };
-        this.play = this.play.bind(this);
+        this.clickHandler = this.clickHandler.bind(this);
     }
-    
-    play() {
-        
+
+    clickHandler(id, details) {
+        let arr = [0, 0, 0];
+        arr[id] = 1;
+        this.setState({
+            activeArray: arr,
+            details: details
+        });
     }
-    
+
     render() {
-        return(
-            <div className="quiz-app">
-                <Question />
-                <Options options={data.incorect}/>
-            </div>    
+        return (
+            <div>
+                <Button id={0} active={this.state.activeArray[0]} clickHandler={this.clickHandler} name="dragos" />
+                <Button id={1} active={this.state.activeArray[1]} clickHandler={this.clickHandler} name="mihail" />
+                <Button id={2} active={this.state.activeArray[2]} clickHandler={this.clickHandler} name="busuioc" />
+                <Details details={this.state.details} />
+            </div>
         );
     }
 }
 
-class Question extends React.Component {
-    render() {
-        return(
-            <h3>{this.props.question}</h3>    
-        );
-    }
-}
 
-class Options extends React.Component {
-    render() {
-        return(
-            <ul>
-                {this.props.options.map((option,i) => <Option key={i} option={option}/>)}
-            </ul>    
-        );
-    }
-}
-
-class Option extends React.Component {
-    render() {
-        return(
-            <li>{this.props.option}</li>    
-        );
-    }
-}
 
 
 ReactDOM.render(
