@@ -67,18 +67,48 @@ class Quiz extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          questions: []  
+            index: 0,
+            gameOver: false
         };
+        this.play = this.play.bind(this);
     }
+    
+    play() {
+        
+    }
+    
     render() {
-        return();
+        return(
+            <div className="quiz-app">
+                <Question />
+                <Options options={data.incorect}/>
+            </div>    
+        );
     }
 }
 
 class Question extends React.Component {
     render() {
         return(
-            <h3>What</h3>    
+            <h3>{this.props.question}</h3>    
+        );
+    }
+}
+
+class Options extends React.Component {
+    render() {
+        return(
+            <ul>
+                {this.props.options.map((option,i) => <Option key={i} option={option}/>)}
+            </ul>    
+        );
+    }
+}
+
+class Option extends React.Component {
+    render() {
+        return(
+            <li>{this.props.option}</li>    
         );
     }
 }
