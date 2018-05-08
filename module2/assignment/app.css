@@ -47,10 +47,11 @@ ul {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .options-field {
-    width: 20%;
+    width: 40%;
     margin: 1rem auto;
     text-align: center;
     background: #3235DB;

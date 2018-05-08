@@ -75,6 +75,7 @@ class Quiz extends React.Component {
             incorectAnswers: 0
         };
         this.checkResult = this.checkResult.bind(this);
+        this.playAgain = this.playAgain.bind(this);
     }
     
     checkResult(option) {
@@ -87,6 +88,20 @@ class Quiz extends React.Component {
                 incorectAnswers: this.state.incorectAnswers + 1
             });
         }
+        this.nextQuestion();
+    }
+
+    nextQuestion() {
+        if (this.state.index < 10) {
+            this.setState({
+                index: this.state.index + 1
+            });
+        } else {
+            this.setState({
+                gameOver: true
+            });
+        }
+        this.render();
     }
     
     renderQuestion() {
@@ -107,13 +122,23 @@ class Quiz extends React.Component {
         );
     }
 
+    playAgain() {
+        this.setState({
+            index: 0,
+            gameOver: false,
+            correctAnswers: 0,
+            incorectAnswers: 0
+        });
+        this.render();
+    }
+
     render() {
         if (!this.state.gameOver) {
             return (
                 <div className="quiz-app">
                     {this.renderQuestion()}
                     {this.renderOptions()}
-                    <button className="play-again">Play Again</button>
+                    <button className="play-again" onclick={this.playAgain}>Play Again</button>
                     <div className="answers">
                         <p>Correct Answers: {this.state.correctAnswers}</p>
                         <p>Incorect Answers: {this.state.incorectAnswers}</p>
