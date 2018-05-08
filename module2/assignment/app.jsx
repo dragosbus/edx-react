@@ -74,11 +74,21 @@ class Quiz extends React.Component {
             question: {}
         };     
     }
+    
+    renderQuestion() {
+        let question = data[this.state.index].question;
+        return(
+            <h3>{question}</h3>
+        );
+    }
 
     renderOptions() {
+        let options = data[this.state.index].incorect;
+        options.push(data[this.state.index].correct);
+        console.log(options)
         return (
             <ul>
-                {data[this.state.index].incorect.map((opt, i) => <Option key={i} option={opt} />)}
+                {options.map((opt, i) => <Option key={i} option={opt} />)}
             </ul> 
         );
     }
@@ -86,14 +96,13 @@ class Quiz extends React.Component {
     render() {
         return (
             <div className="quiz-app">
-                <Question />
+                {this.renderQuestion()}
                 {this.renderOptions()}
             </div>
         );
     }
 }
 
-const Question = props => <h3>{props.question}</h3>;
 const Option = props => <li>{props.option}</li>;
 
 ReactDOM.render(
