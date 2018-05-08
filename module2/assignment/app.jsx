@@ -142,20 +142,18 @@ class Quiz extends React.Component {
                     {this.renderQuestion()}
                     {this.renderOptions()}
                     <PlayAgain playAgain={this.playAgain} />
-                    <div className="answers">
-                        <p>Correct Answers: {this.state.correctAnswers}</p>
-                        <p>Incorect Answers: {this.state.incorectAnswers}</p>
-                    </div>
+                    <Answers correctAnswers={this.state.correctAnswers}
+                        incorectAnswers={this.state.incorectAnswers}
+                    />
                 </div>
             ); 
         } else {
             return (
                 <div className="quiz-app">
-                    <PlayAgain playAgain={this.playAgain}/>
-                    <div className="answers">
-                        <p>Correct Answers: {this.state.correctAnswers}</p>
-                        <p>Incorect Answers: {this.state.incorectAnswers}</p>
-                    </div>
+                    <PlayAgain playAgain={this.playAgain} />
+                    <Answers correctAnswers={this.state.correctAnswers}
+                        incorectAnswers={this.state.incorectAnswers}
+                    />
                 </div>
             );
         }
@@ -179,7 +177,16 @@ class Option extends React.Component {
     }
 }
 
-const PlayAgain = props => <button className="play-again" onClick={props.playAgain}>Play Again</button>
+const PlayAgain = props => <button className="play-again" onClick={props.playAgain}>Play Again</button>;
+
+const Answers = props => {
+    return (
+        <div className="answers">
+            <p>Correct Answers: {props.correctAnswers}</p>
+            <p>Incorect Answers: {props.incorectAnswers}</p>
+        </div>
+    );
+}
 
 ReactDOM.render(
     <App />,
