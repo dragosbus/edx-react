@@ -72,14 +72,15 @@ class Quiz extends React.Component {
             index: 0,
             gameOver: false,
             correctAnswers: 0,
-            incorectAnswers: 0
+            incorectAnswers: 0,
+            question: data[0]
         };
         this.checkResult = this.checkResult.bind(this);
         this.playAgain = this.playAgain.bind(this);
     }
     
     checkResult(option) {
-        if (option === data[this.state.index].correct) {
+        if (option === this.state.question.correct) {
             this.setState({
                 correctAnswers: this.state.correctAnswers + 1,
             });
@@ -94,27 +95,28 @@ class Quiz extends React.Component {
     nextQuestion() {
         if (this.state.index < 10) {
             this.setState({
-                index: this.state.index + 1
+                index: this.state.index + 1,
+                question: data[this.state.index + 1]
             });
         } else {
             this.setState({
                 gameOver: true
             });
         }
+        console.log(this.state.question)
         this.render();
     }
     
     renderQuestion() {
-        let question = data[this.state.index].question;
+        let question = this.state.question.question;
         return(
             <h3 className="question">{question}</h3>
         );
     }
 
     renderOptions() {
-        let options = data[this.state.index].incorect;
-        options.push(data[this.state.index].correct);
-        console.log(options)
+        let options = this.state.question.incorect.concat(this.state.question.correct);
+        
         return (
             <ul className="options">
                 {options.map((opt, i) => <Option checkResult={option => this.checkResult(option)} key={i} option={opt} />)}
@@ -127,9 +129,10 @@ class Quiz extends React.Component {
             index: 0,
             gameOver: false,
             correctAnswers: 0,
-            incorectAnswers: 0
+            incorectAnswers: 0,
+            question: data[0]
         });
-        this.render();
+        
     }
 
     render() {
@@ -138,7 +141,7 @@ class Quiz extends React.Component {
                 <div className="quiz-app">
                     {this.renderQuestion()}
                     {this.renderOptions()}
-                    <button className="play-again" onclick={this.playAgain}>Play Again</button>
+                    <button className="play-again" onClick={this.playAgain}>Play Again</button>
                     <div className="answers">
                         <p>Correct Answers: {this.state.correctAnswers}</p>
                         <p>Incorect Answers: {this.state.incorectAnswers}</p>
@@ -148,7 +151,7 @@ class Quiz extends React.Component {
         } else {
             return (
                 <div className="quiz-app">
-                    <button className="play-again">Play Again</button>
+                    <button className="play-again" onClick={this.playAgain}>Play Again</button>
                     <div className="answers">
                         <p>Correct Answers: {this.state.correctAnswers}</p>
                         <p>Incorect Answers: {this.state.incorectAnswers}</p>
