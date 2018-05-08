@@ -103,7 +103,7 @@ class Quiz extends React.Component {
                 gameOver: true
             });
         }
-        console.log(this.state.question)
+
         this.render();
     }
     
@@ -141,7 +141,7 @@ class Quiz extends React.Component {
                 <div className="quiz-app">
                     {this.renderQuestion()}
                     {this.renderOptions()}
-                    <button className="play-again" onClick={this.playAgain}>Play Again</button>
+                    <PlayAgain playAgain={this.playAgain} />
                     <div className="answers">
                         <p>Correct Answers: {this.state.correctAnswers}</p>
                         <p>Incorect Answers: {this.state.incorectAnswers}</p>
@@ -151,7 +151,7 @@ class Quiz extends React.Component {
         } else {
             return (
                 <div className="quiz-app">
-                    <button className="play-again" onClick={this.playAgain}>Play Again</button>
+                    <PlayAgain playAgain={this.playAgain}/>
                     <div className="answers">
                         <p>Correct Answers: {this.state.correctAnswers}</p>
                         <p>Incorect Answers: {this.state.incorectAnswers}</p>
@@ -178,6 +178,8 @@ class Option extends React.Component {
         );
     }
 }
+
+const PlayAgain = props => <button className="play-again" onClick={props.playAgain}>Play Again</button>
 
 ReactDOM.render(
     <App />,
