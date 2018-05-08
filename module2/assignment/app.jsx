@@ -70,8 +70,14 @@ class Quiz extends React.Component {
         super(props);
         this.state = {
             index: 0,
-            gameOver: false
-        };     
+            gameOver: false,
+            correct: false
+        };
+        this.checkResult = this.checkResult.bind(this);
+    }
+    
+    checkResult(option) {
+        console.log(option)
     }
     
     renderQuestion() {
@@ -87,7 +93,7 @@ class Quiz extends React.Component {
         console.log(options)
         return (
             <ul className="options">
-                {options.map((opt, i) => <Option key={i} option={opt} />)}
+                {options.map((opt, i) => <Option checkResult={opt=>this.checkResult(opt)} key={i} option={opt} />)}
             </ul> 
         );
     }
@@ -97,12 +103,14 @@ class Quiz extends React.Component {
             <div className="quiz-app">
                 {this.renderQuestion()}
                 {this.renderOptions()}
+                <PlayBtn />
             </div>
         );
     }
 }
 
-const Option = props => <li className="options-field">{props.option}</li>;
+const Option = props => <li className="options-field" onClick={props.checkResult}>{props.option}</li>;
+const PlayBtn = props => <button className="play-again">Play Again</button>
 
 ReactDOM.render(
     <App />,
