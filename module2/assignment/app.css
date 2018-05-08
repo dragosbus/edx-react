@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
 html {
     box-sizing: border-box;
     font-size: 10px;
-    height: 100%;
+    min-height: 100%;
 }
 
 *,*::after, *::before {
@@ -11,5 +13,56 @@ html {
 * {
     margin: 0;
     padding: 0;
+}
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    background-image: linear-gradient(45deg, #3235DB, #7D2C64);
+}
+
+ul {
+    list-style: none;
+}
+
+.quiz-app {
+    background: #fff;
+    width: 85%;
+    margin: 1rem auto;
+    box-shadow: 0 0 2rem rgba(0,0,0,0.3);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-top: 5rem;
+}
+
+.question {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.options {
+    width: 90%;
+    margin: 1rem auto;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.options-field {
+    width: 20%;
+    margin: 1rem auto;
+    text-align: center;
+    background: #3235DB;
+    color: #fff;
+    padding: 1rem 0;
+    border-radius: 0.5rem;
+    font-size: 1.7rem;
+    cursor: pointer;
+    transition: background 0.55s ease-in;
+}
+
+.options-field:hover {
+    background: #7D2C64;
 }
 

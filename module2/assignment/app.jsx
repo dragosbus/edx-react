@@ -1,6 +1,6 @@
 const data = [
     {
-        question: "How is the number 9 represented as a binary number",
+        question: "How is the number 9 represented as a binary number?",
         correct: "1001",
         incorect: ["1000", "1110", "1010"]
     },
@@ -70,15 +70,14 @@ class Quiz extends React.Component {
         super(props);
         this.state = {
             index: 0,
-            gameOver: false,
-            question: {}
+            gameOver: false
         };     
     }
     
     renderQuestion() {
         let question = data[this.state.index].question;
         return(
-            <h3>{question}</h3>
+            <h3 className="question">{question}</h3>
         );
     }
 
@@ -87,7 +86,7 @@ class Quiz extends React.Component {
         options.push(data[this.state.index].correct);
         console.log(options)
         return (
-            <ul>
+            <ul className="options">
                 {options.map((opt, i) => <Option key={i} option={opt} />)}
             </ul> 
         );
@@ -103,7 +102,7 @@ class Quiz extends React.Component {
     }
 }
 
-const Option = props => <li>{props.option}</li>;
+const Option = props => <li className="options-field">{props.option}</li>;
 
 ReactDOM.render(
     <App />,
