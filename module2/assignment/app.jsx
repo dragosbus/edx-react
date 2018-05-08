@@ -71,7 +71,6 @@ class Quiz extends React.Component {
         this.state = {
             index: 0,
             gameOver: false,
-            correct: false,
             correctAnswers: 0,
             incorectAnswers: 0
         };
@@ -79,7 +78,15 @@ class Quiz extends React.Component {
     }
     
     checkResult(option) {
-        console.log(option)
+        if (option === data[this.state.index].correct) {
+            this.setState({
+                correctAnswers: this.state.correctAnswers + 1,
+            });
+        } else {
+            this.setState({
+                incorectAnswers: this.state.incorectAnswers + 1
+            });
+        }
     }
     
     renderQuestion() {
@@ -101,13 +108,29 @@ class Quiz extends React.Component {
     }
 
     render() {
-        return (
-            <div className="quiz-app">
-                {this.renderQuestion()}
-                {this.renderOptions()}
-                <button className="play-again">Play Again</button>
-            </div>
-        );
+        if (!this.state.gameOver) {
+            return (
+                <div className="quiz-app">
+                    {this.renderQuestion()}
+                    {this.renderOptions()}
+                    <button className="play-again">Play Again</button>
+                    <div className="answers">
+                        <p>Correct Answers: {this.state.correctAnswers}</p>
+                        <p>Incorect Answers: {this.state.incorectAnswers}</p>
+                    </div>
+                </div>
+            ); 
+        } else {
+            return (
+                <div className="quiz-app">
+                    <button className="play-again">Play Again</button>
+                    <div className="answers">
+                        <p>Correct Answers: {this.state.correctAnswers}</p>
+                        <p>Incorect Answers: {this.state.incorectAnswers}</p>
+                    </div>
+                </div>
+            );
+        }
     }
 }
 
