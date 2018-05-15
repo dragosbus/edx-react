@@ -1,0 +1,24 @@
+html {
+    box-sizing: border-box;
+    font-size: 10px;
+}
+
+*,*::after,*::before {
+    box-sizing: inherit;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+header {
+    color: #fff;
+    padding: 1rem;
+    background: linear-gradient(45deg,rgb(236, 53, 21), rgb(228, 11, 130) 65%);
+    box-shadow: 0 0 20px rgba(0,0,0,0.26);
+}
