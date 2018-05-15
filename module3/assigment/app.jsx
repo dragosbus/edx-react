@@ -2,17 +2,36 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            firstName: "",
-            lastName: "",
+            users: [],
             activity: "",
             checks: []
         }
+        this.submitHandler = this.submitHandler.bind(this);
+        this.selectHandler = this.selectHandler.bind(this);
     }
+
+    submitHandler(e) {
+        e.preventDefault();
+        let newUser = {
+            firstName: e.target.elements[0].value,
+            lastName: e.target.elements[1].value,
+            activity: this.state.activity,
+            checks: []
+        };
+    }
+
+    selectHandler(e) {
+        e.preventDefault();
+        this.setState({
+            activity: e.target.value
+        });
+    }
+
     render() {
         return (
             <div>
                 <Header />
-                <Form />
+                <Form selectHandler={this.selectHandler}/>
             </div>
         ); 
     }
@@ -44,7 +63,7 @@ class Form extends React.Component {
                 </div>
                 <div className="select">
                     <label htmlFor="select-activity">Select Activity</label>
-                    <select value={this.props.activity} id="select-activity">
+                    <select onClick={this.props.selectHandler} value={this.props.activity} id="select-activity">
                         <option value="Science Lab">Science Lab</option>
                         <option value="Swimming">Swimming</option>
                         <option value="Cooking">Cooking</option>
