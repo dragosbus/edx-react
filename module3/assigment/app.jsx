@@ -3,11 +3,12 @@ class App extends React.Component {
         super(props);
         this.state = {
             users: [],
-            activity: "",
+            activity: "Science Lab",
             checks: []
         }
         this.submitHandler = this.submitHandler.bind(this);
         this.selectHandler = this.selectHandler.bind(this);
+        this.checkboxesHandler = this.checkboxesHandler.bind(this);
     }
 
     submitHandler(e) {
@@ -18,7 +19,11 @@ class App extends React.Component {
             activity: this.state.activity,
             checks: this.state.checks
         };
-        console.log(newUser);
+        this.setState(prevState => {
+            return {
+                users: prevState.users.concat(newUser)
+           } 
+        });
     }
 
     selectHandler(e) {
@@ -27,11 +32,20 @@ class App extends React.Component {
         });
     }
 
+    checkboxesHandler(e) {
+        if (e.target.checked) {
+            this.state.checks.push(e.target.id);
+        } else {
+            this.state.checks.splice(this.state.checks.indexOf(e.target.id), 1);
+        }
+    }
+
     render() {
         return (
             <div>
                 <Header />
-                <Form submitHandler={this.submitHandler} selectHandler={this.selectHandler}/>
+                <Form submitHandler={this.submitHandler} selectHandler={this.selectHandler} checkHandler={this.checkboxesHandler} />
+                <Users users={this.state.users}/>
             </div>
         ); 
     }
@@ -73,15 +87,15 @@ class Form extends React.Component {
                 <div className="checks">
                     <label>Check All that apply</label>
                     <div className="check">
-                        <input type="checkbox" id="a"/>
+                        <input onClick={this.props.checkHandler} type="checkbox" id="a"/>
                         <label htmlFor="a">a) Dietary Restrictions</label>
                     </div>
                     <div className="check">
-                        <input type="checkbox" id="b" />
+                        <input onClick={this.props.checkHandler} type="checkbox" id="b" />
                         <label htmlFor="b">b) Physical Disabilities</label>
                     </div>
                     <div className="check">
-                        <input type="checkbox" id="c" />
+                        <input onClick={this.props.checkHandler} type="checkbox" id="c" />
                         <label htmlFor="c">c) Medical Needs</label>
                     </div>
                 </div>
@@ -94,7 +108,7 @@ class Form extends React.Component {
 const Users = props => {
     return (
         <ul className="ursers">
-            {props.users.map((user, i) => <List firstName={props.firstName} lastName={props.lastName}/>)}
+            {props.users.map((user, i) => <List key={i} firstName={user.firstName} lastName={user.lastName} activity={user.activity} restrictions={user.checks}/>)}
         </ul>
     );  
 };
@@ -103,7 +117,9 @@ const List = props => {
     let fullName = props.firstName + ' ' + props.lastName;
     return (
         <li>
-            <h3>{fullName}</h3> 
+            <h3>{fullName}</h3>
+            <h5>{props.activity}</h5>
+            <h5>{props.restrictions.join('')}</h5>
         </li>
     );  
 };
