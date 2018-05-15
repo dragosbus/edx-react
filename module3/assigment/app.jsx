@@ -16,12 +16,12 @@ class App extends React.Component {
             firstName: e.target.elements[0].value,
             lastName: e.target.elements[1].value,
             activity: this.state.activity,
-            checks: []
+            checks: this.state.checks
         };
+        console.log(newUser);
     }
 
     selectHandler(e) {
-        e.preventDefault();
         this.setState({
             activity: e.target.value
         });
@@ -31,7 +31,7 @@ class App extends React.Component {
         return (
             <div>
                 <Header />
-                <Form selectHandler={this.selectHandler}/>
+                <Form submitHandler={this.submitHandler} selectHandler={this.selectHandler}/>
             </div>
         ); 
     }
@@ -52,7 +52,7 @@ class Form extends React.Component {
 
     render() {
         return (
-            <form id="register-form">
+            <form id="register-form" onSubmit={this.props.submitHandler}>
                 <div className="first-name">
                     <label htmlFor="first-name">First Name</label>
                     <input type="text" id="first-name"/>
