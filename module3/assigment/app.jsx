@@ -1,4 +1,13 @@
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            firstName: "",
+            lastName: "",
+            activity: "",
+            checks: []
+        }
+    }
     render() {
         return (
             <div>
@@ -62,6 +71,23 @@ class Form extends React.Component {
         );
     }
 }
+
+const Users = props => {
+    return (
+        <ul className="ursers">
+            {props.users.map((user, i) => <List firstName={props.firstName} lastName={props.lastName}/>)}
+        </ul>
+    );  
+};
+
+const List = props => {
+    let fullName = props.firstName + ' ' + props.lastName;
+    return (
+        <li>
+            <h3>{fullName}</h3> 
+        </li>
+    );  
+};
 
 
 ReactDOM.render(
