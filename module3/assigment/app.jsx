@@ -3,7 +3,7 @@ class App extends React.Component {
         super(props);
         this.state = {
             users: [],
-            activity: "Science Lab",
+            activity: "Science Labh",
             checks: []
         }
         this.submitHandler = this.submitHandler.bind(this);
