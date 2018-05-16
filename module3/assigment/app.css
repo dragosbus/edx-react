@@ -118,6 +118,25 @@ button[type="submit"]:hover {
     margin-top: 1rem;
 }
 
+.remove-list {
+    display: block;
+    margin: 1rem auto;
+    border: 1px solid rgba(0,0,0,0.4);
+    border-radius: 50%;
+    padding: 1rem 1.5rem;
+    background: none;
+    color: rgb(228, 4, 41);
+    font-size: 2rem;
+    transition: all 0.6s ease-in;
+    cursor: pointer;
+}
+
+.remove-list:hover {
+    background: rgb(228, 4, 41);
+    color: #fff;
+    border: none;
+}
+
 @media (min-width: 660px) {
     #register-form {
         width: 65%;
@@ -138,10 +157,17 @@ button[type="submit"]:hover {
     #register-form .checks .check {
         width: 30%;
     }
+
+    .users li {
+        width: 45%;
+    }
 }
 
 @media (min-width: 960px) {
     #register-form div {
         width: 40%;    
+    }
+    .users li {
+        width: 30%;
     }
 }

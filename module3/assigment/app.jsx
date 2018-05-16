@@ -9,6 +9,7 @@ class App extends React.Component {
         this.submitHandler = this.submitHandler.bind(this);
         this.selectHandler = this.selectHandler.bind(this);
         this.checkboxesHandler = this.checkboxesHandler.bind(this);
+        this.removeList = this.removeList.bind(this);
     }
 
     submitHandler(e) {
@@ -40,12 +41,22 @@ class App extends React.Component {
         }
     }
 
+    removeList(e) {
+        let parentId = +e.target.parentNode.id;
+        let users = this.state.users;
+        users.splice(parentId, 1);
+        
+        this.setState({
+            users: users
+        });
+    }
+
     render() {
         return (
             <div>
                 <Header />
                 <Form submitHandler={this.submitHandler} selectHandler={this.selectHandler} checkHandler={this.checkboxesHandler} />
-                <Users users={this.state.users}/>
+                <Users removeList={this.removeList} users={this.state.users}/>
             </div>
         ); 
     }
@@ -108,7 +119,7 @@ class Form extends React.Component {
 const Users = props => {
     return (
         <ul className="users">
-            {props.users.map((user, i) => <List key={i} firstName={user.firstName} lastName={user.lastName} activity={user.activity} restrictions={user.checks}/>)}
+            {props.users.map((user, i) => <List key={i} id={i} removeList={props.removeList} firstName={user.firstName} lastName={user.lastName} activity={user.activity} restrictions={user.checks}/>)}
         </ul>
     );  
 };
@@ -118,10 +129,11 @@ const List = props => {
     let activity = "Activity: " + props.activity;
     let restrictions = "Restrictions: " + props.restrictions.join("");
     return (
-        <li>
+        <li id={props.id}>
             <h3>{fullName}</h3>
             <h5>{activity}</h5>
             <h5>{restrictions}</h5>
+            <button className="remove-list" onClick={props.removeList}>X</button>
         </li>
     );  
 };
