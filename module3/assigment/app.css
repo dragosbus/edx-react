@@ -91,6 +91,33 @@ button[type="submit"]:hover {
     background: rgb(15, 126, 48);
 }
 
+.users {
+    width: 100%;
+    list-style: none;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.users li {
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+.users li h3 {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.users li h5 {
+    font-size: 17px;
+    margin-top: 1rem;
+}
+
 @media (min-width: 660px) {
     #register-form {
         width: 65%;

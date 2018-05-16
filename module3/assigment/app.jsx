@@ -3,7 +3,7 @@ class App extends React.Component {
         super(props);
         this.state = {
             users: [],
-            activity: "Science Labh",
+            activity: "Science Lab",
             checks: []
         }
         this.submitHandler = this.submitHandler.bind(this);
@@ -107,19 +107,21 @@ class Form extends React.Component {
 
 const Users = props => {
     return (
-        <ul className="ursers">
+        <ul className="users">
             {props.users.map((user, i) => <List key={i} firstName={user.firstName} lastName={user.lastName} activity={user.activity} restrictions={user.checks}/>)}
         </ul>
     );  
 };
 
 const List = props => {
-    let fullName = props.firstName + ' ' + props.lastName;
+    let fullName = "Full Name: " + props.firstName + ' ' + props.lastName;
+    let activity = "Activity: " + props.activity;
+    let restrictions = "Restrictions: " + props.restrictions.join("");
     return (
         <li>
             <h3>{fullName}</h3>
-            <h5>{props.activity}</h5>
-            <h5>{props.restrictions.join('')}</h5>
+            <h5>{activity}</h5>
+            <h5>{restrictions}</h5>
         </li>
     );  
 };
